@@ -45,7 +45,7 @@ par("pch")
 - `mtext`: add library text to the margins
 - `axis`: add axis ticks/labels
 
-```{R}
+```{r}
 with(airquality, plot(Wind, Ozone, main= "Ozone blabla"))
 with(subset(airquality,Month==5), points(Wind,Ozone, col="blue"))
 with(subset(airquality,Month!=5), points(Wind,Ozone, col="red"))
@@ -63,3 +63,60 @@ with(airquality, {
   mtext("Ozone and Weather blable", outer = TRUE)
 })
 ```
+
+##Demo
+Ploting margins go clockwise starting from 6 o'clock.
+
+`example(points)` will give a nice output of the R base graphics demo
+
+* `gl()` to generate groups
+* `type="n"` sends a message to make a plot, but leave the field blanc
+
+
+##Graphic Devices in R
+
+Devices:
+
+* `quarz()` on Mac
+* `windows()` on Windows
+* `x11()` on Nix
+`?Devices` help page shows all devices
+
+For window-based device:
+
+1. Call a plotting function like `plot()`
+2. The plot appears on the screen
+3. Annotate the plot
+
+For a file-based device:
+
+1. Explicitly launch a graphics device
+2. Call a plotting function to make a plot
+3. Annotate the plot if necessary
+4. Explicitly close with `dev.off()`
+
+##Vector formats
+
+* `pdf` for general purpose stuff
+* `svg` for XML-based vector graphics, may also include interactive stuff
+* `win.metafile` to create a windows metafile
+* `postscript` an older format but still widely used
+
+##Bitmap formats
+* `bmp`
+* `jpeg`
+* `tiff`
+* `png`
+
+Only one grphics device is active at a time. If multiple devices are open, figure out which one is
+active with `dev.cur()`. To switch devices use `dev.set(<integer)>` where `integer` is the number of the
+desired graphics device. `dev.copy()` copies output from one device to another. There is another one
+specifically for the pdf -> `dev.copy2pdf()`;
+```{r}
+library(datasets)
+with(faithful,plot(eruptions, waiting))#Create a plot on screen device
+title(main="Old faithful blabla")#Add the main title
+dev.copy(png, file="tmp.png")#Copy my plot to a file
+dev.off()#Never forget to close the plotting device
+```
+
