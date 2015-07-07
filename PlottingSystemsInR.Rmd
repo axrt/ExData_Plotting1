@@ -1,0 +1,37 @@
+---
+title: "PlottingSystemsInR"
+output: html_document
+---
+
+#Base
+```{r}
+library(datasets)
+hist(airquality$Ozone)
+with(airquality, plot(Wind, Ozone))
+airquality<-transform(airquality,Month=factor(Month))
+boxplot(Ozone~Month,airquality,lab="Month",ylab="Ozone (ppb)")
+```
+
+##Parameters
+
+- `pch`: plotting system with default as open cicle
+- `lty`: the line type with a default of solid line, but can be dashed, dotted, etc
+- `lwd`: line width, specified as integer multiple
+- `col`: color, specified as number, string, or hex code, `colors()` function gives color by name
+- `xlab`: character vector for the x-axis
+- `ylab`: character vector for the y-axis
+
+- `par()` is a global function that affects all the plots in R base graphics
+- `las`: orientation of the axis on the plot
+- `bg`: background, duh!
+- `mar`: the margin size
+- `oma`: the outer margin size (default is 0 for all sides)
+- `mfrow`: number of plots per row, column plots are filled row-wise
+- `mfcol`: number of plots per column --//--
+
+Can call the `par()` with different parameters in order to see current defaults
+```{r}
+par("lty")
+par("col")
+par("pch")
+```

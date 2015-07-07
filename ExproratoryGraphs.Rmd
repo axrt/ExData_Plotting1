@@ -1,0 +1,28 @@
+---
+title: "ExploratoryGraphs"
+output: html_document
+---
+
+##Why do we use graphs in data analysis?
+- to understand data properties
+- to find patterns in data
+- to suggest modeling strategies
+- to "debug" analyses
+- to communicate results
+
+
+##Characteristics of the exploratory graphs
+- They are made quickly
+- In large numbers
+- The goal is personal understanding
+- Axes/legends are generally cleaned up
+- Colors and sizes are primarily used for infromation
+
+#Useful
+- Can plot a rug under a histogram with ```rug(df)```
+- Change breaks with ```breaks=``` parameter
+- Place avergage on a boxplot with ```abline(h=12)``` and ```lvw``` paramter 
+
+```{r}
+
+```

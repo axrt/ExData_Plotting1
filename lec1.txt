@@ -1,0 +1,20 @@
+Principles of Analytic Graphics
+1. Show comparisons
+- Evidence is always relative
+- Compared to what?
+2. Show causality, mechanism, explanation, systemic structure
+- what is the causative reason for thinkin about this question
+3. Show the multivariate data
+- multivariate = >2 vars
+- the real world is multivar
+- need to escape flatland
+4. Integrate the principals that you have
+- Completely integrate words, numbers and diagrams
+- Data graphics should make use of many models of data presentation
+- Don't let the tool drive the analysis
+5. Descrive and document the evidence with appropriate labels, scales, sources, etc.
+- a data graphic should tell a complete story that is credible
+6. Content is King
+- if you do not have good data, no mater how good a presentatino, the whole thing will suck
+
+Edward Tufte, Beautiful Evidence
