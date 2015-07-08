@@ -4,6 +4,7 @@ source("https://raw.githubusercontent.com/axrt/ExData_Plotting1/master/get.data.
 get.data()
 
 #Create histogram
+par(mar=c(5,5,2,2))
 with(data, hist(Global_active_power, col="red",
                 xlab = "Global Active Power (kilowatts)",
                 main="Global Active Power"))
@@ -14,7 +15,7 @@ if(!require("grDevices")){
 library(grDevices)
 
 #copy the histogram to a file
-dev.copy(png, file="plot1.png")
+dev.copy(png, file="plot1.png", width=480, height=480)
 #off the device
 dev.off()
 
