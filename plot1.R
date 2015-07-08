@@ -1,4 +1,4 @@
-#Firts source the code for downloading and processing data (needs libcurl)
+#First, source the code for downloading and processing data (needs libcurl)
 source("https://raw.githubusercontent.com/axrt/ExData_Plotting1/master/get.data.R")
 #Now - (download),read and filter the data
 get.data()
