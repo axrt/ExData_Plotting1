@@ -6,8 +6,7 @@ get.data()
 par(mfrow=c(1,1)) #to check in case par has been changed
 #Generate plot
 with(data, plot(x=DateTime,y=Global_active_power, type="l",
-                xlab="", ylab="Global Active Power (kilowatts)"))
-mtext(cex=0.5)
+                xlab="", ylab="Global Active Power (kilowatts)",cex.lab=0.7))
 #grDevices just in case..
 if(!require("grDevices")){
   install.packages("grDevices")
