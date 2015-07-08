@@ -4,10 +4,10 @@ source("https://raw.githubusercontent.com/axrt/ExData_Plotting1/master/get.data.
 get.data()
 
 #Create histogram
-par(mar=c(5,5,2,2))
+par(mfrow=c(1,1),mar=c(5,5,2,2))
 with(data, hist(Global_active_power, col="red",
                 xlab = "Global Active Power (kilowatts)",
-                main="Global Active Power"))
+                main="Global Active Power",cex.lab=0.7))
 #grDevices should be there, but just in case..
 if(!require("grDevices")){
   install.packages("grDevices")

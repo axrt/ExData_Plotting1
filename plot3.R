@@ -17,7 +17,7 @@ gen.plot<-function(){
 }
 
 #Plot to screen
-par(mar=c(5,5,2,2))
+par(mfrow=c(1,1),mar=c(5,5,2,2))
 gen.plot()
 #Save the plot
 #grDevices just in case..
@@ -26,6 +26,7 @@ if(!require("grDevices")){
 }
 library(grDevices)
 png("plot3.png",width = 480,height = 480)
+par(mfrow=c(1,1))
 #write plot to png
 gen.plot()
 #off the device
