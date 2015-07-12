@@ -1,0 +1,136 @@
+---
+title: "Lattice"
+output: html_document
+---
+Lattice is kinda more for plotting many things at once. A lot of code is implemented in the
+`grid` package. Lattice package does not adhere to semantics of plotting data first and then
+overlaying it with styles. Everything is done in one funciton call.
+
+Functions:
+
+* `xyplot` scatterplots
+* `bwplot` box and whiskers plot
+* `histogram` duh
+* `stripplot` like boxplot, but with actual points
+* `dotplot` plots dots on violin-like strings
+* `splom` scatterplot matrix
+* `levelplot, contourplot` for plotting image data
+
+Lattice functions generally take formula style
+
+`xyplot(y~x|f*g, data)` left goes y, x goes right,
+f and g are conditional variables, the plot literally means "I would like to look at y and x 
+for any level of f and g". `data` contains the actual data for the plot.
+
+```{r}
+library(lattice)
+library(datasets)
+xyplot(Ozone~Wind, data=airquality)
+```
+
+```{r}
+library(lattice)
+library(datasets)
+airquality<-transform(airquality, Month=factor(Month))
+xyplot(Ozone~Wind|Month, data=airquality, layout=c(5,1))
+```
+
+Lattice functions return objects of type *trellis*. Needs a `print` call to be sent to a device. Most of the time you do not have to worry about the plotting device, R will take care of it.
+
+```{r}
+p<-xyplot(Ozone~Wind, data=airquality) #nothing happens
+print(p)
+```
+Lattice function has a panel funciton that controls what's happening incide every panel of the plot.
+
+```{r}
+set.seed(10)
+x<-rnorm(100)
+f<-rep(0:1, ecah=50)
+y=x+f-f*x+rnorm(100, sd=0.5)
+f<-factor(f, labels=c("Group 1","Group 2"))
+xyplot(y~x|f, layout=c(2,1)) # Plot with 2 panels
+```
+
+```{r}
+xyplot(y~x|f, panel=function(x,y,...){
+  panel.xyplot(x, y, ...) #first call the function default
+  panel.abline(h=median(y),lty=2) #Add horyzontal line at the median
+})
+```
+
+```{r}
+xyplot(y~x|f, panel=function(x,y,...){
+  panel.xyplot(x, y, ...) #first call the function default
+  panel.lmline(x,y, col=2) #Overlay a simple linear regerssion
+})
+```
+Can't use any base funcitons for annotation.
+
+#ggplot2
+Built on top of `grid` package.
+`qplot` is an analog of the base plotting system. The main difference is that if you pass some data to the qplot, you have to specify where is the data coming from. If a dataframe with the data, is not specified, it will look over the environment.
+
+**aestetics** are the things like size, colors etc.
+**geoms** specify what type of plots are being used.
+
+Factors are important to subset the datasets. Factors should be labeled.
+`ggblot` is the core funciton of the package.
+
+```{r}
+library(ggplot2)
+```
+A Hello World plot:
+```{r}
+qplot(displ, hwy, data=mpg)
+```
+```{r}
+qplot(displ, hwy, data=mpg, color=drv)
+```
+```{r}
+qplot(displ, hwy, data=mpg, geom=c("point", "smooth"))
+```
+If only one variable is specified -> a histogram is generated
+```{r}
+qplot(hwy, data=mpg, fill=drv)
+```
+##Facets
+```{r}
+qplot(displ,hwy, data=mpg, facets=.~drv)
+qplot(hwy, data=mpg, facets=drv~., binwidth=2)
+```
+
+Main components of the ggplot graphics
+
+* dataframe
+* aestetic mapping: how data are mapped to colours and shapes
+* facets for conditional plots
+* stats for binning and quantile smoothing
+* scales: what scales and estetics mappings use
+* coordinate system
+
+Plots are built like layers:
+
+- plot the data
+- overlay summary
+- metadata and annotation
+
+Can always call a `summary(ggplot.object)` to see the components: data, mapping and faceting.
+
+##Annotation
+
+* labels `xlab()`, `ylab()`, `labs()` and `ggtitle()`
+* each of the geom functions have parameters to modify
+* for the things that only make sence globaly use `theme()`
+* two standard appearences are included `theme_gray()` and `theme_bw()`
+
+```{r}
+expression("log"* PM[2.5])
+```
+
+
+
+
+
+
+
